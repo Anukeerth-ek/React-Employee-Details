@@ -1,8 +1,11 @@
 import React from 'react'
+import UserDataApi from './UserDataApi'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+        <UserDataApi/>
+    </div>
   )
 }
 
