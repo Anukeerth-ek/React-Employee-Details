@@ -3,7 +3,7 @@ import UserDetail from "./UserDetail";
 
 const UserDataApi = () => {
     const [data, setData] = useState([]);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(2);
     const [loading, setLoading] = useState(false);
 
     // FOR FETCHING API DATA
@@ -11,7 +11,7 @@ const UserDataApi = () => {
         const fetchApiData = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`https://dummyjson.com/users?limit=10&page=${page}`);
+                const res = await fetch(`https://dummyjson.com/users?`);
                 const data = await res.json();
                 setData(prev => [...prev, ...data.users]);
             } catch (error) {
@@ -29,7 +29,7 @@ const UserDataApi = () => {
         const handleInfiniteScroll = () => {
             if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
                 if (!loading) {
-                    setPage(prev => prev + 1);
+                    
                 }
             }
         };
