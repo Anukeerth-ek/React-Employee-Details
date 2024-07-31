@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  sortOrder: 'asc', // Default to ascending
+  sortOrder: 'asc',
 };
 
 const sortSlice = createSlice({
