@@ -13,7 +13,7 @@ const Navbar = () => {
      const handleGender = (event) => {
           const selectedGender = event.target.value;
           dispatch(setGender(selectedGender));
-          console.log(event.target.value);
+      
      };
 
      const handleAge = (event) => {

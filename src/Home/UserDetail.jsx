@@ -13,7 +13,7 @@ const UserDetail = ({ data }) => {
      const selectedGender = useSelector(selectGender);
      const ageSelector = useSelector(selectAge);
      const searchedEmployee = useSelector(setSearchedValue);
-     console.log(searchedEmployee);
+     
 
      // Function to handle sorting
      const handleSortData = (data, sortOrder, sortBy) => {
