@@ -19,31 +19,53 @@ export const userDetailHeading = [
           link: "Id",
           icon1: FaArrowUpLong,
           icon2: FaArrowDownLong,
+          nameAscending: "",
+          nameDescending: "",
      },
      {
           link: "Image",
           icon1: "",
           icon2: "",
+          nameAscending: "",
+          nameDescending: "",
      },
      {
           link: "Full Name",
-
-          icon1: FaArrowUpLong,
-          icon2: FaArrowDownLong,
+            icon1: "",
+            icon2: "",
+          nameAscending: FaArrowUpLong,
+          nameDescending: FaArrowDownLong,
+     },
+     {
+          link: "Mail",
+          icon1: "",
+          icon2: "",
+          nameAscending: "",
+          nameDescending: "",
+          ageAscending: FaArrowUpLong,
+          ageDescending: FaArrowDownLong 
      },
      {
           link: "Demography",
           icon1: "",
           icon2: "",
+          nameAscending: "",
+          nameDescending: "",
+          ageAscending: FaArrowUpLong,
+          ageDescending: FaArrowDownLong 
      },
      {
           link: "Designation",
           icon1: "",
           icon2: "",
+          nameAscending: "",
+          nameDescending: "",
      },
      {
           link: "Location",
           icon1: "",
           icon2: "",
+          nameAscending: "",
+          nameDescending: "",
      },
 ];

@@ -1,61 +1,101 @@
 import React from "react";
 import { userDetailHeading } from "../utils/data";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSortOrder, setSortOrder } from "../redux/sortSlice";
+import { selectSortOrder, selectSortBy, setSortOrder, setSortBy } from "../redux/sortSlice";
 import { selectGender } from "../redux/genderSlice";
 
 const UserDetail = ({ data }) => {
+     console.log(data)
      const dispatch = useDispatch();
      const sortOrder = useSelector(selectSortOrder);
+     const sortBy = useSelector(selectSortBy);
      const selectedGender = useSelector(selectGender);
 
-     // function for sorting
-     const sortData = (data, sortOrder) => {
+     // Function to handle sorting
+     const handleSortData = (data, sortOrder, sortBy) => {
           return [...data].sort((a, b) => {
-               if (sortOrder === "asc") {
-                    return a.id - b.id; // for descending order
-               } else {
-                    return b.id - a.id; // for descending order
+               let comparison = 0;
+               if (sortBy === "id") {
+                    comparison = a.id - b.id;
+               } else if (sortBy === "firstName") {
+                    comparison = a.firstName.localeCompare(b.firstName);
                }
+
+               return sortOrder === "asc" ? comparison : -comparison;
           });
      };
 
      // Apply sorting
-     let sortedData = sortData(data, sortOrder);
+     let sortedData = handleSortData(data, sortOrder, sortBy);
 
-     // If we have seletected gender then we will filter according to the selected gender otherwise will have the sorted data.
+     // Apply filtering based on selected gender
      const filteredData = selectedGender ? sortedData.filter((item) => item.gender === selectedGender) : sortedData;
-     
-     console.log(filteredData)
+
      return (
           <section>
                <div>
-                    <div className="relative overflow-x-auto">
+                    <div className=" relative overflow-x-auto">
                          <table className="w-full border rounded-full border-gray-300 text-sm text-left">
                               <thead className="text-xs text-gray-700 uppercase">
-                                   <tr>
+                                   <tr className="">
                                         {userDetailHeading?.map((item, index) => (
-                                             <th key={index} className="px-6 py-3 border-b border-gray-200">
+                                             <th key={index} className="md:px-6 md:py-3 px-3 text-xs  py-1 border-b border-gray-200 text-gray-600">
                                                   <span>{item.link}</span>
                                                   <span className="inline-flex items-center">
                                                        {item.icon1 && (
                                                             <item.icon1
                                                                  className={`ml-1 cursor-pointer ${
-                                                                      sortOrder === "asc" ? "text-gray-300" : "text-red-600"
+                                                                      sortBy === "id" && sortOrder === "asc"
+                                                                           ? "text-red-600"
+                                                                           : "text-gray-300"
                                                                  }`}
-                                                                 onClick={() => dispatch(setSortOrder("asc"))}
+                                                                 onClick={() => {
+                                                                      dispatch(setSortBy("id"));
+                                                                      dispatch(setSortOrder("asc"));
+                                                                 }}
                                                             />
                                                        )}
                                                        {item.icon2 && (
                                                             <item.icon2
                                                                  className={`ml-1 cursor-pointer ${
-                                                                      sortOrder === "desc"
-                                                                           ? " text-gray-300"
-                                                                           : "text-red-600"
+                                                                      sortBy === "id" && sortOrder === "desc"
+                                                                           ? "text-red-600"
+                                                                           : "text-gray-300"
                                                                  }`}
-                                                                 onClick={() => dispatch(setSortOrder("desc"))}
+                                                                 onClick={() => {
+                                                                      dispatch(setSortBy("id"));
+                                                                      dispatch(setSortOrder("desc"));
+                                                                 }}
                                                             />
                                                        )}
+                                                       {/* Sorting by firstName */}
+                                                       {item.nameAscending && (
+                                                            <item.nameAscending
+                                                                 className={`ml-1 cursor-pointer ${
+                                                                      sortBy === "firstName" && sortOrder === "asc"
+                                                                           ? "text-red-600"
+                                                                           : "text-gray-300"
+                                                                 }`}
+                                                                 onClick={() => {
+                                                                      dispatch(setSortBy("firstName"));
+                                                                      dispatch(setSortOrder("asc"));
+                                                                 }}
+                                                            />
+                                                       )}
+                                                       {item.nameDescending && (
+                                                            <item.nameDescending
+                                                                 className={`ml-1 cursor-pointer ${
+                                                                      sortBy === "firstName" && sortOrder === "desc"
+                                                                           ? "text-red-600"
+                                                                           : "text-gray-300"
+                                                                 }`}
+                                                                 onClick={() => {
+                                                                      dispatch(setSortBy("firstName"));
+                                                                      dispatch(setSortOrder("desc"));
+                                                                 }}
+                                                            />
+                                                       )}
+                                                      
                                                   </span>
                                              </th>
                                         ))}
@@ -63,8 +103,8 @@ const UserDetail = ({ data }) => {
                               </thead>
                               <tbody>
                                    {filteredData?.map((item, index) => (
-                                        <tr key={index} className="border-b border-gray-200">
-                                             <td className="px-6 py-4">0{item.id}</td>
+                                        <tr key={index} className="border-b border-gray-200 font-semibold text-sm text-gray-500">
+                                             <td className="md:px-6 md:py-4 px-2 py-1">0{item.id}</td>
                                              <td className="px-6 py-4">
                                                   <img
                                                        src={item.image}
@@ -75,7 +115,10 @@ const UserDetail = ({ data }) => {
                                              <td className="px-6 py-4">
                                                   {item.firstName} {item.maidenName} {item.lastName}
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-6 py-4 text-blue-500">
+                                                  {item.email}
+                                             </td>
+                                             <td className="px-6 py-4 ">
                                                   {item.gender === "female" ? "F" : "M"}/{item.age}
                                              </td>
                                              <td className="px-6 py-4">{item.company.title}</td>

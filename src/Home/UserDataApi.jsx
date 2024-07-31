@@ -41,7 +41,7 @@ const UserDataApi = () => {
     }, [loading]);
 
     return (
-        <div className="mx-10">
+        <div className="mx-3 md:mx-10">
             <UserDetail data={data} />
             {loading && <div>Loading...</div>}
         </div>
