@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserDetail from "./UserDetail";
+import ClipLoader from "react-spinners/ClipLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const UserDataApi = () => {
      const [data, setData] = useState([]);
@@ -45,7 +47,17 @@ const UserDataApi = () => {
      return (
           <div className="mx-3 md:mx-10">
                <UserDetail data={data} />
-               {loading && <div>Loading...</div>}
+               {loading && (
+                    <div className="flex items-center justify-center mt-14">
+                         <PacmanLoader
+                              color="blue"
+                              loading={loading}
+                              size={40}
+                              aria-label="Loading Spinner"
+                              data-testid="loader"
+                         />
+                    </div>
+               )}
           </div>
      );
 };
