@@ -31,6 +31,7 @@ const UserDetail = ({ data }) => {
 
      // Apply sorting
      let sortedData = handleSortData(data, sortOrder, sortBy);
+    
 
      // Apply filtering based on selected gender
      let filteredData = selectedGender ? sortedData.filter((item) => item.gender === selectedGender) : sortedData;
@@ -57,6 +58,7 @@ const UserDetail = ({ data }) => {
                          item.maidenName.toLowerCase().includes(searchedEmployee.toLowerCase()) // Adjust fields as necessary
                );
           }
+          else "User Not Found"
      }
      handleSearchEmployee()
 
@@ -76,11 +78,7 @@ const UserDetail = ({ data }) => {
                                                   <span className="inline-flex items-center">
                                                        {item.icon1 && (
                                                             <item.icon1
-                                                                 className={`ml-1 cursor-pointer ${
-                                                                      sortBy === "id" && sortOrder === "asc"
-                                                                           ? "text-red-600"
-                                                                           : "text-gray-300"
-                                                                 }`}
+                                                                 className={`ml-1 cursor-pointer ${sortOrder === 'desc' ?'text-red-600' : "text-gray-300"}`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("id"));
                                                                       dispatch(setSortOrder("asc"));
@@ -89,11 +87,7 @@ const UserDetail = ({ data }) => {
                                                        )}
                                                        {item.icon2 && (
                                                             <item.icon2
-                                                                 className={`ml-1 cursor-pointer ${
-                                                                      sortBy === "id" && sortOrder === "desc"
-                                                                           ? "text-red-600"
-                                                                           : "text-gray-300"
-                                                                 }`}
+                                                                 className={`ml-1 cursor-pointer ${sortOrder === 'asc' ?'text-red-600' : "text-gray-300" }`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("id"));
                                                                       dispatch(setSortOrder("desc"));
@@ -103,11 +97,7 @@ const UserDetail = ({ data }) => {
                                                        {/* Sorting by firstName */}
                                                        {item.nameAscending && (
                                                             <item.nameAscending
-                                                                 className={`ml-1 cursor-pointer ${
-                                                                      sortBy === "firstName" && sortOrder === "asc"
-                                                                           ? "text-red-600"
-                                                                           : "text-gray-300"
-                                                                 }`}
+                                                                 className={`ml-1 cursor-pointer  ${sortOrder === 'desc' ?'text-red-600' : "text-gray-300"}`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("firstName"));
                                                                       dispatch(setSortOrder("asc"));
@@ -116,11 +106,7 @@ const UserDetail = ({ data }) => {
                                                        )}
                                                        {item.nameDescending && (
                                                             <item.nameDescending
-                                                                 className={`ml-1 cursor-pointer ${
-                                                                      sortBy === "firstName" && sortOrder === "desc"
-                                                                           ? "text-red-600"
-                                                                           : "text-gray-300"
-                                                                 }`}
+                                                                 className={`ml-1 cursor-pointer ${sortOrder === 'asc' ?'text-red-600' : "text-gray-300" }`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("firstName"));
                                                                       dispatch(setSortOrder("desc"));
@@ -155,7 +141,7 @@ const UserDetail = ({ data }) => {
                                              </td>
                                              <td className="px-6 py-4">{item.company.title}</td>
                                              <td className="px-6 py-4">
-                                                  {item.address.state},{" "}
+                                                  {item.address.state},
                                                   {item.address.country === "United States" ? "USA" : ""}
                                              </td>
                                         </tr>
