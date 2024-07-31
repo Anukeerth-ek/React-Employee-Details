@@ -72,7 +72,7 @@ const UserDetail = ({ data }) => {
                                         {userDetailHeading?.map((item, index) => (
                                              <th
                                                   key={index}
-                                                  className="md:px-6 md:py-3 px-3 text-xs  py-1 border-b border-gray-200 text-gray-600"
+                                                  className="md:px-6 md:py-3 px-3 text-xs  py-1 border-b border-gray-200 text-gray-600 hover:underline"
                                              >
                                                   <span>{item.link}</span>
                                                   <span className="inline-flex items-center">
@@ -122,7 +122,7 @@ const UserDetail = ({ data }) => {
                                    {filteredData?.map((item, index) => (
                                         <tr
                                              key={index}
-                                             className="border-b border-gray-200 font-semibold text-sm text-gray-500"
+                                             className="border-b border-gray-200 font-semibold text-sm text-gray-500 hover:bg-gray-100 cursor-pointer" 
                                         >
                                              <td className="md:px-6 md:py-4 px-2 py-1">0{item.id}</td>
                                              <td className="px-6 py-4">

@@ -28,23 +28,23 @@ const Navbar = () => {
      }
      return (
           <nav>
-               <div className="flex items-center justify-between mx-3 md:mx-10 md:pt-10 pt-5 pb-4 md:pb-5">
-                    <div className="flex">
-                         <h3 className="text-lg md:text-3xl font-bold">{navTitle}</h3>
-                         <div className="w-[500px] ml-8">
+               <div className="flex items-center justify-between mx-3 md:mx-10 md:pt-10  pb-4 md:pb-5">
+                    <div className=" md:flex mb-16 md:mb-0">
+                         <h3 className="text-xl md:text-3xl font-bold translate-y-12 md:translate-y-0">{navTitle}</h3>
+                         <div className="w-[120px] lg:w-[500px] md:ml-8 translate-y-14 md:translate-y-0">
                               <input
                                    type="text"
                                    placeholder="Search Employee..."
-                                   className="border-2 w-full rounded-md px-2 py-1 border-gray-400"
+                                   className="border-2 w-full rounded-md md:rounded-full px-2 py-1 mt-2 md:mt-0 md:py-1 text-xs md:text-base border-gray-400 hover:border-blue-600"
                                    onChange={(event) => handleSearchEmployee(event)}
                               />
                          </div>
                     </div>
                     <div className="flex items-center space-x-2 md:space-x-4">
-                         <HiFilter className="text-red-800 text-lg mr-1" />
+                         <HiFilter className="text-red-700 text-lg mr-1" />
 
                          <select
-                              className=" border-2 flex items-center px-1 md:px-2 py-[2px] text-left rounded-md"
+                              className=" border-2 flex items-center px-1 md:px-2 py-[2px] text-left rounded-md hover:border-blue-600 cursor-pointer"
                               name="Age"
                               onChange={(event) => handleAge(event)}
                          >
@@ -53,7 +53,7 @@ const Navbar = () => {
                               <option value="highToLow">High - Low</option>
                          </select>
                          <select
-                              className=" border-2 flex items-center px-1 md:px-2 py-[2px] text-left rounded-md"
+                              className=" border-2 flex items-center px-1 md:px-2 py-[2px] text-left rounded-md hover:border-blue-600 cursor-pointer"
                               name="Gender"
                               onChange={(event) => handleGender(event)}
                          >
