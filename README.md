@@ -21,3 +21,6 @@
 
 8. NAME IN Z - A ORDER
 ![Screenshot 2024-08-02 142636](https://github.com/user-attachments/assets/c7a37b74-9ed3-4825-bc55-8495e2b37d83)
+
+9. SEARCH EMPLOYEE NAME
+![Screenshot 2024-08-02 142941](https://github.com/user-attachments/assets/3397f1ca-5b13-47ef-a36b-b7b9ecb14fa2)
