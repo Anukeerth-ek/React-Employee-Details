@@ -13,7 +13,6 @@ const UserDetail = ({ data }) => {
      const selectedGender = useSelector(selectGender);
      const ageSelector = useSelector(selectAge);
      const searchedEmployee = useSelector(setSearchedValue);
-     
 
      // Function to handle sorting
      const handleSortData = (data, sortOrder, sortBy) => {
@@ -31,25 +30,21 @@ const UserDetail = ({ data }) => {
 
      // Apply sorting
      let sortedData = handleSortData(data, sortOrder, sortBy);
-    
 
      // Apply filtering based on selected gender
      let filteredData = selectedGender ? sortedData.filter((item) => item.gender === selectedGender) : sortedData;
 
-  
-
-     const handleAgeSort = ()=> {
+     const handleAgeSort = () => {
           if (ageSelector === "lowToHigh") {
                filteredData = [...filteredData].sort((a, b) => a.age - b.age);
           } else if (ageSelector === "highToLow") {
                filteredData = [...filteredData].sort((a, b) => b.age - a.age);
           }
-     }
+     };
 
-     handleAgeSort()
+     handleAgeSort();
 
-
-     const handleSearchEmployee = ()=> {
+     const handleSearchEmployee = () => {
           if (searchedEmployee) {
                filteredData = filteredData.filter(
                     (item) =>
@@ -57,10 +52,9 @@ const UserDetail = ({ data }) => {
                          item.lastName.toLowerCase().includes(searchedEmployee.toLowerCase()) ||
                          item.maidenName.toLowerCase().includes(searchedEmployee.toLowerCase()) // Adjust fields as necessary
                );
-          }
-          else "User Not Found"
-     }
-     handleSearchEmployee()
+          } else "User Not Found";
+     };
+     handleSearchEmployee();
 
      return (
           <section>
@@ -78,7 +72,11 @@ const UserDetail = ({ data }) => {
                                                   <span className="inline-flex items-center">
                                                        {item.icon1 && (
                                                             <item.icon1
-                                                                 className={`ml-1 cursor-pointer ${sortOrder === 'desc' ?'text-red-600' : "text-gray-300"}`}
+                                                                 className={`ml-1 cursor-pointer ${
+                                                                      sortOrder === "desc"
+                                                                           ? "text-red-600"
+                                                                           : "text-gray-300"
+                                                                 }`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("id"));
                                                                       dispatch(setSortOrder("asc"));
@@ -87,7 +85,9 @@ const UserDetail = ({ data }) => {
                                                        )}
                                                        {item.icon2 && (
                                                             <item.icon2
-                                                                 className={`ml-1 cursor-pointer ${sortOrder === 'asc' ?'text-red-600' : "text-gray-300" }`}
+                                                                 className={`ml-1 cursor-pointer ${
+                                                                      sortOrder === "asc" ? "text-red-600" : "text-gray-300"
+                                                                 }`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("id"));
                                                                       dispatch(setSortOrder("desc"));
@@ -97,7 +97,11 @@ const UserDetail = ({ data }) => {
                                                        {/* Sorting by firstName */}
                                                        {item.nameAscending && (
                                                             <item.nameAscending
-                                                                 className={`ml-1 cursor-pointer  ${sortOrder === 'desc' ?'text-red-600' : "text-gray-300"}`}
+                                                                 className={`ml-1 cursor-pointer  ${
+                                                                      sortOrder === "desc"
+                                                                           ? "text-red-600"
+                                                                           : "text-gray-300"
+                                                                 }`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("firstName"));
                                                                       dispatch(setSortOrder("asc"));
@@ -106,7 +110,9 @@ const UserDetail = ({ data }) => {
                                                        )}
                                                        {item.nameDescending && (
                                                             <item.nameDescending
-                                                                 className={`ml-1 cursor-pointer ${sortOrder === 'asc' ?'text-red-600' : "text-gray-300" }`}
+                                                                 className={`ml-1 cursor-pointer ${
+                                                                      sortOrder === "asc" ? "text-red-600" : "text-gray-300"
+                                                                 }`}
                                                                  onClick={() => {
                                                                       dispatch(setSortBy("firstName"));
                                                                       dispatch(setSortOrder("desc"));
@@ -122,7 +128,7 @@ const UserDetail = ({ data }) => {
                                    {filteredData?.map((item, index) => (
                                         <tr
                                              key={index}
-                                             className="border-b border-gray-200 font-semibold text-sm text-gray-500 hover:bg-gray-100 cursor-pointer" 
+                                             className="border-b border-gray-200 font-semibold text-sm text-gray-500 hover:bg-gray-100 cursor-pointer"
                                         >
                                              <td className="md:px-6 md:py-4 px-2 py-1">0{item.id}</td>
                                              <td className="px-6 py-4">

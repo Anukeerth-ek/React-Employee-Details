@@ -13,7 +13,6 @@ const Navbar = () => {
      const handleGender = (event) => {
           const selectedGender = event.target.value;
           dispatch(setGender(selectedGender));
-      
      };
 
      const handleAge = (event) => {
@@ -22,10 +21,10 @@ const Navbar = () => {
           dispatch(setAge(selectedAge));
      };
 
-     const handleSearchEmployee = (event)=> {
-         const searchedValue = event.target.value;
-         dispatch(setSearch(searchedValue))
-     }
+     const handleSearchEmployee = (event) => {
+          const searchedValue = event.target.value;
+          dispatch(setSearch(searchedValue));
+     };
      return (
           <nav>
                <div className="flex items-center justify-between mx-3 md:mx-10 md:pt-10  pb-4 md:pb-5">
